@@ -1,0 +1,26 @@
+#include Makevars.common
+REDDIR=redsvd-0.2.0
+REDSRCDIR=$(REDDIR)/src
+EIGENSRCDIR=.
+
+PKG_CXXFLAGS += -I.
+PKG_CXXFLAGS +=`Rscript -e "Rcpp:::CxxFlags()"`
+
+PKG_LIBS += -lz
+PKG_LIBS += -lredsvd
+PKG_LIBS += `Rscript -e "Rcpp:::LdFlags()"`
+PKG_LIBS += $(REDSRCDIR)
+
+all:redsvdwrap.a
+	@echo "src/Redsvdwrap.a"
+
+libredsvd.a:
+	g++ $(REDSRCDIR)/util.cpp -I$(EIGENSRCDIR) -I$(REDSRCDIR) -fPIC -c
+	ar r $@ util.o	
+
+redsvdwrap.a:redsvdwrap.cpp libredsvd.a
+	g++ $< -fPIC -o redsvdwrap.o -lredsvd -I$(EIGENSRCDIR) -I$(REDSRCDIR) $(PKG_CXXFLAGS) $(PKG_CPPFLAGS)
+	ar r $@ redsvdwrap.o
+
+clean:
+	rm *.o *.a 
