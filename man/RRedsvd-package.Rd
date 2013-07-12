@@ -23,14 +23,19 @@ constructing approximate matrix decompositions"
 }
 
 \author{
-Xiange Dubian
+Xiangze Dubian
 Maintainer: Who to complain to <xiangze gmail.com>
 ~~ The author and/or maintainer of the package ~~
 }
 \references{
+RedSVD
 https://code.google.com/p/redsvd/wiki/English
+
+Finding structure with randomness: Probabilistic algorithms for constructing approximate matrix decompositions.
 http://amath.colorado.edu/faculty/martinss/Pubs/2009_HMT_random_review.pdf
-http://amath.colorado.edu/faculty/martinss/Talks/2009_NIPS_tutorial.pdf
+
+Randomized Algorithms for Very Large-Scale Linear Algebra
+https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/randomized_algorithm_for_very-large_scale_linear_algebra.pdf
 }
 ~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
 ~~ the R documentation directory ~~
