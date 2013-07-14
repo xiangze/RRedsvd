@@ -7,3 +7,4 @@ Author: Xiangze Dubian
 Maintainer: Xiangze Dubian <xiangze gmail.com>
 Description: 
 License: MPL2
+Depends: Rcpp,RcppEigen 
