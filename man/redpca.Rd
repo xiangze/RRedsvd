@@ -39,5 +39,5 @@ Xiangze Dubian
   print(x)
   sx<-as(x,"CsparseMatrix")
   p <- redpca(sx,2)
-  a<-p$scores  \%*\% p$principalComponents
+  a<-p$scores  \%*\% t(p$principalComponents)
 }
