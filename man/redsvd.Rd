@@ -3,72 +3,42 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
   redsvd
-  %%  ~~function to do ... ~~
 }
 \description{
-  %%  ~~ A concise (1-5 lines) description of what the function does. ~~
+  Return approximate singular values and left and right orthogonal
+  matrices of a sparse matrix by using randomized SVD method.
 }
 \usage{
-redsvd(A, n)
+redsvd(A, num)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{A}{
     input matrix (sparse)
 }
-  \item{n}{
-  dimention of output matrix
+  \item{num}{
+    the number of returned singular values.
 }
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-RedSVD
-https://code.google.com/p/redsvd/wiki/English
-
-Finding structure with randomness: Probabilistic algorithms for constructing approximate matrix decompositions.
-http://amath.colorado.edu/faculty/martinss/Pubs/2009_HMT_random_review.pdf
-
-Randomized Algorithms for Very Large-Scale Linear Algebra
-https://www.cse.cuhk.edu.hk/irwin.king/_media/presentations/randomized_algorithm_for_very-large_scale_linear_algebra.pdf
-%% ~put references to the literature/web site here ~
+  A list of U,D and V against input sparse matrix A
+  \item{U}{matrix U}
+  \item{V }{matrix V}
+  \item{D }{singular values D as vector.}
+  A \simeq  U * D  * V^t
 }
 \author{
 Xiangze Dubian
-  %%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (A, n) 
-{
-    if (is.matrix(A)) {
-        .Call(redsvdwrap, A, n)
-    }
-  }
+  print("test redsvd")
+  x <- matrix(
+            sample(c(-1, 0, 1, 2), 100, replace = TRUE,
+                   prob = c(0.1,0.8, 0.07, 0.03)),
+              nrow = 25)
+  print(x)
+  sx<-as(x,"CsparseMatrix")
+  p <- redsvd(sx,2)
+  (p$U \%*\%  diag(p$D) \%*\% t(p$V))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ SVD }
+\keyword{ SVD,Randomized SVD }
 \keyword{ Eigen }% __ONLY ONE__ keyword per line
