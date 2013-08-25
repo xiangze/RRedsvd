@@ -23,7 +23,7 @@ redpca(A, num)
   Eigenvalues and Eigenvectors of  input sparse matrix A
   \item{principalComponents}{matrix}
   \item{scores}{matrix}
-  A * Eigenvectors[,i] \simeq Eigenvalues[i] * Eigenvectors[,i]
+  A * Eigenvectors[,i] simeq Eigenvalues[i] * Eigenvectors[,i]
 }
 
 \author{

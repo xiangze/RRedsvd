@@ -23,7 +23,7 @@ redSymEigen(A,num)
   Eigenvalues and Eigenvectors of  input sparse matrix A
   \item{Eigenvectors}{matrix}
   \item{Eigenvalues }{as vector}
-  A * Eigenvectors[,i] \simeq Eigenvalues[i] * Eigenvectors[,i]
+  A * Eigenvectors[,i] simeq Eigenvalues[i] * Eigenvectors[,i]
 }
 
 \author{

@@ -24,7 +24,7 @@ redsvd(A, num)
   \item{U}{matrix U}
   \item{V }{matrix V}
   \item{D }{singular values D as vector.}
-  A \simeq  U * D  * V^t
+  A simeq  U * D  * V^t
 }
 \author{
 Xiangze Dubian
