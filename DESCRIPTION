@@ -1,10 +1,10 @@
 Package: RRedsvd
 Type: Package
 Title: SVD(singular value decomposition) of  sparse matrix by using Randamized SVD (RedSVD)
-Version: 0.14
-Date: 2013-07-08
+Version: 0.141
+Date: 2013-08-25
 Author: Xiangze Dubian
 Maintainer: Xiangze Dubian <xiangze@gmail.com>
-Description: This package provieds Randomized SVD for sparse matrix by using Eigen,RedSVD.
+Description: This package provides Randomized SVD for sparse matrix by using Eigen,RedSVD.
 Depends: Matrix,Rcpp,RcppEigen 
-License: MPL2
+License: BSD

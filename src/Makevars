@@ -3,8 +3,8 @@ REDDIR=redsvd-0.2.0
 REDSRCDIR=$(REDDIR)/src
 EIGENSRCDIR=.
 
-RCPPPATH=`Rscript -e "Rcpp:::CxxFlags()"`
-RCPPEIGENPATH=`Rscript -e "Rcpp:::CxxFlags()" |sed 's/Rcpp/RcppEigen/'`
+RCPPPATH=`$(R_HOME)/bin/Rscript -e "Rcpp:::CxxFlags()"`
+RCPPEIGENPATH=`$(R_HOME)/bin/Rscript -e "Rcpp:::CxxFlags()" |sed 's/Rcpp/RcppEigen/'`
 
 PKG_CXXFLAGS +=-I.
 PKG_CXXFLAGS +=-I$(REDSRCDIR)
@@ -14,7 +14,7 @@ PKG_CXXFLAGS +=$(RCPPEIGENPATH)
 PKG_LIBS += -lz
 PKG_LIBS +=-L.
 PKG_LIBS += -lredsvd
-PKG_LIBS += `Rscript -e "Rcpp:::LdFlags()"`
+PKG_LIBS += `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
 
 PROG=redsvdwrap.so
 
