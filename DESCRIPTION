@@ -1,7 +1,7 @@
 Package: RRedsvd
 Type: Package
 Title: SVD(singular value decomposition) of  sparse matrix by using Randamized SVD (RedSVD)
-Version: 0.1
+Version: 0.14
 Date: 2013-07-08
 Author: Xiangze Dubian
 Maintainer: Xiangze Dubian <xiangze@gmail.com>
