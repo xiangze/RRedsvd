@@ -19,25 +19,23 @@ PKG_LIBS += `Rscript -e "Rcpp:::LdFlags()"`
 #PROG=redsvdwrap.a
 PROG=redsvdwrap.so
 
+ifeq "$(WIN)" "64"
+ARCHOPT=-m64
+else
+ARCHOPT=-m32
+endif
+
 all:$(PROG)
 
 util.o:
-	g++ -arch $(R_ARCH:/%=%) $(REDSRCDIR)/util.cpp -I$(EIGENSRCDIR) -I$(REDSRCDIR) -fPIC -c
+	g++ $(ARCHOPT) $(REDSRCDIR)/util.cpp -I$(EIGENSRCDIR) -I$(REDSRCDIR) -fPIC -c
 
 libredsvd.a:util.o
 	ar r $@ util.o	
-#	g++ $< -fPIC -o redsvdwrap.o -lredsvd -I$(EIGENSRCDIR) -I$(REDSRCDIR) $(PKG_CXXFLAGS) $(PKG_CPPFLAGS) $(PKG_CFLAGS)
-#SHLIB_LD=$SHLIB_CXXLD SHLIB_LDFLAGS=$$(SHLIB_CXXLDFLAGS)
-SHLIB_LD=$SHLIB_CXXLD SHLIB_LDFLAGS=$SHLIB_CXXLDFLAGS
 
 $(PROG):redsvdwrap.cpp libredsvd.a
 	@echo	$(R_PACKAGE_DIR)
-	@echo	lib$(R_ARCH)
-#	@echo1  $(USERLIB)
-#	@echo	$(R_PACKAGE_DIR)/lib$(R_ARCH)/$(USERLIB) $(USERLIB)
-#	g++ $< -fPIC -o redsvdwrap.o -lredsvd -I$(EIGENSRCDIR) -I$(REDSRCDIR) $(PKG_CXXFLAGS) $(PKG_CPPFLAGS) $(PKG_CFLAGS) $(SHLIB_CXXLD) $(SHLIB_CXXLDFLAGS)
-#	R CMD compile $<
-#	ar r $@ redsvdwrap.o
+
 
 clean:
 	rm *.o *.a
