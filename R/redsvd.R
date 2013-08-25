@@ -1,17 +1,17 @@
-redsvd <- function(A,n){
+redsvd <- function(A,num){
   if(is(A,"CsparseMatrix")){
-    .Call("redSVDwrap",A,n)
+    .Call("redSVDwrap",A,num)
   }
 }
 
-redpca <- function(A,n){
+redpca <- function(A,num){
   if(is(A,"CsparseMatrix")){
-    .Call("redPCAwrap",A,n)
+    .Call("redPCAwrap",A,num)
   }
 }
 
-redSymEigen <- function(A){
+redSymEigen <- function(A,num){
   if(is(A,"CsparseMatrix")){
-    .Call("redSymwrap",A)
+    .Call("redSymwrap",A,num)
   }
 }

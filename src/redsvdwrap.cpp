@@ -13,21 +13,28 @@ SEXP redSVDwrap(SEXP AA,SEXP nn){
   int num=(int)dd[0];
    const MappedSparseMatrix<double> A(as<MappedSparseMatrix<double> >(AA));
    REDSVD::RedSVD svA(A, num);
-   return Rcpp::wrap(svA.matrixV());
+   //   return Rcpp::wrap(svA.matrixV());
+   return List::create(Named("V") = Rcpp::wrap(svA.matrixV()),
+		       Named("U")=  Rcpp::wrap(svA.matrixU()),
+		       Named("D")=  Rcpp::wrap(svA.singularValues()));
 }
 
 SEXP redSymwrap(SEXP AA,SEXP nn){
-  int num=INTEGER(nn)[0];
+  //  int num=INTEGER(nn)[0];
+  Rcpp::NumericVector dd(nn);
+  int num=(int)dd[0];
   const MappedSparseMatrix<double> A(as<MappedSparseMatrix<double> >(AA));
   REDSVD::RedSymEigen p(A,num);
-   return List::create(Named("eigenValues") = p.eigenValues(),
-		       Named("eigenVectors")=  p.eigenVectors());
+  return List::create(Named("eigenValues") = Rcpp::wrap(p.eigenValues()),
+		      Named("eigenVectors")= Rcpp::wrap(p.eigenVectors()));
 }
 
 SEXP redPCAwrap(SEXP AA,SEXP nn){
-  int num=INTEGER(nn)[0];
+  //  int num=INTEGER(nn)[0];
+  Rcpp::NumericVector dd(nn);
+  int num=(int)dd[0];
    const MappedSparseMatrix<double> A(as<MappedSparseMatrix<double> >(AA));
    REDSVD::RedPCA p(A, num);
-   return List::create(Named("principalComponents") = p.principalComponents(),
-		       Named("scores") =  p.scores());
+   return List::create(Named("principalComponents") = Rcpp::wrap(p.principalComponents()),
+		       Named("scores") =  Rcpp::wrap(p.scores()));
 }
